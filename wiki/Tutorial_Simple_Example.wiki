@@ -12,6 +12,8 @@
 
 == Create testing-portlet.js  ==
 
+Goal of javascript TestingPortlet object is to add following text inside of portlet "<h1>Inserting text at end of portlet</h1>".
+
 {{{
 (function($, w){
         // Create "testing" namespace if not created
