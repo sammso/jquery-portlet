@@ -1,3 +1,4 @@
+#labels Featured
 == Create JSP page for portlet ==
 {{{
 <portlet:defineObjects />
@@ -14,6 +15,7 @@
 
 {{{
 (function($, w){
+
         // Create "testing" namespace if not created
         if(!w.testing) {
                 w.testing = {};
