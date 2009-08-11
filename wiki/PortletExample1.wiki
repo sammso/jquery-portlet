@@ -1,0 +1,35 @@
+== Create JSP page for portlet ==
+{{{
+<portlet:defineObjects />
+<div id="<portlet:namespace />">
+
+</div>
+<script language="javascript>
+  jQuery.addPortlet(new testing.TestingPortlet("<portlet:namespace />"));
+</script>
+}}}
+
+
+== Create testing-portlet.js  ==
+
+{{{
+(function($, w){
+        // Create "testing" namespace if not created
+        if(!w.testing) {
+                w.testing = {};
+        }
+        
+        w.testing.TestingPortlet = function(nameSpace, options) {
+
+                var mThis = $.Portlet.call(this, nameSpace); // Extend parent functionality
+                
+                mThis.query().append("<h1>Inserting text at end of portlet</h1>");
+                
+                mThis.ready = function() {
+                // this is called when $(document).ready is called.
+                };
+                
+                return mThis;
+        };
+})(jQuery, window);
+}}}
