@@ -46,5 +46,18 @@ Goal of javascript TestingPortlet object is to add following text inside of port
                 return mThis;
         };
 })(jQuery, window);
+}}}
 
+h1. Liferay Specific
+
+{{{
+	<portlet>
+		<portlet-name>jquery-portlet-sample</portlet-name>
+		<instanceable>true</instanceable>
+                <private-request-attributes>false</private-request-attributes>
+                <private-session-attributes>false</private-session-attributes>
+		<header-portlet-css>/css/sample.css</header-portlet-css>
+                <header-portlet-javascript>/js/jquery.portlet.js</header-portlet-javascript>
+		<header-portlet-javascript>/js/sample.js</header-portlet-javascript>
+	</portlet>
 }}}
