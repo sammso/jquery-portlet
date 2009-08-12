@@ -2,7 +2,8 @@
 
 == Overview ==
 
-This example portlet shows how to create javascript application and consentrate all the logic on one javascript file. There can be multiple instances of portlet and even thought these portlets are using same 
+This example portlet shows how to create JavaScript application and concentrate all the logic on one JavaScript file. There can be multiple instances of portlet and even thought these portlets.
+
 
 == Create JSP page for portlet ==
 {{{
