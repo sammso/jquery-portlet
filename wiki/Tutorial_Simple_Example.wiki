@@ -1,3 +1,9 @@
+= Tutorial Simple Example =
+
+== Overview ==
+
+This example portlet shows how to javascirpt
+
 == Create JSP page for portlet ==
 {{{
 <%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
