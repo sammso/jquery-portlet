@@ -1,11 +1,15 @@
 == Create JSP page for portlet ==
 {{{
-<portlet:defineObjects />
+<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+<portlet:defineObjects/>
 <div id="<portlet:namespace />">
-
+    <input type="text" name="myField">
+    <button name="myButton">Add To list</button>
+    <ul class="jpList">
+    </ul>
 </div>
-<script language="javascript>
-  jQuery.addPortlet(new testing.TestingPortlet("<portlet:namespace />"));
+<script type="text/javascript">
+        jQuery.addPortlet(new sample.SamplePortlet("<portlet:namespace />"));
 </script>
 }}}
 
@@ -17,21 +21,30 @@ Goal of javascript TestingPortlet object is to add following text inside of port
 {{{
 (function($, w){
         // Create "testing" namespace if not created
-        if(!w.testing) {
-                w.testing = {};
+        if(!w.sample) {
+                w.sample = {};
         }
-        
-        w.testing.TestingPortlet = function(nameSpace, options) {
 
+        w.sample.SamplePortlet = function(nameSpace, options) {
                 var mThis = $.Portlet.call(this, nameSpace); // Extend parent functionality
-                
-                mThis.query().append("<h1>Inserting text at end of portlet</h1>");
-                
+                var myField$ = mThis.$("input[name=myField]");
+                var myList$ = mThis.$(".jpList");
+
+                mThis.$("button[name=myButton]").click(function(){
+                    var fieldText = myField$.val();
+                    if(fieldText==undefined || fieldText.length==0) {
+                        return;
+                    }
+                    // Remove HTML comments
+                    fieldText = fieldText.replace(/[<]/g,"&lt;").replace(/[>]/g,"&gt;").replace(/[<]/g,"&amp;");
+                    myList$.append("<li>" + fieldText + "</li>");
+                });
+
                 mThis.ready = function() {
-                // this is called when $(document).ready is called.
+                    // this is called when $(document).ready is called.                    
                 };
-                
                 return mThis;
         };
 })(jQuery, window);
+
 }}}
