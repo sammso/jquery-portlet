@@ -1,3 +1,4 @@
+#labels Featured,Phase-Implementation
 #jQuery portlet API documentation.
 
 = Introduction =
