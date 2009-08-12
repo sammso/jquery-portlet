@@ -2,8 +2,6 @@
 
 = Introduction =
 
-This descripes jQuery Portlet API
-
 = new methods for jQuery =
 
 || Method || Description || Example ||
@@ -13,11 +11,37 @@ This descripes jQuery Portlet API
 || portletCount|| How many portlets are registered to page || ||
 || portlets|| Returns all portlets on page on array || ||
 
-
-
 = $.Portlet object =
 
+== Creating own Portlet object == 
+
+{{{
+var MyPortlet = function(nameSpace, options) {
+                var mThis = $.Portlet.call(this, nameSpace); // This extends your portlet object
+
+                mThis.ready = function() {
+                    // this is called when $(document).ready is called.                    
+                };
+                return mThis;
+        };
+}}}
+
+You can also extend your own portal object and have portlet inheritance hierachy.
+
+{{{
+var ExtendedPortlet = function(nameSpace, options) {
+                var mThis = MyPortlet.call(this, nameSpace, options); // This extends your portlet object
+
+                mThis.ready = function() {
+                    // this is called when $(document).ready is called.                    
+                };
+                return mThis;
+        };
+}}}
+
 == Member methods == 
+
+These methods are to be mainly to be used inside Portlet object.
 
 || Method || Description || Example ||
 || query || make jQuery inside portlet || {{{ mThis.query("button"); }}} ||
