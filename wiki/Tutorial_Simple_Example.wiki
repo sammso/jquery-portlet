@@ -40,7 +40,7 @@ Then we add global public namespace for our javascript API.
         }
 }}}
 
-Then we create our portlet inside the namespace
+Then we create our javascript SamplePortlet inside the javascript domain
 {{{
         w.sample.SamplePortlet = function(nameSpace, options) {
                 var mThis = $.Portlet.call(this, nameSpace); // Extend parent 
@@ -52,7 +52,7 @@ Then we create our portlet inside the namespace
         };
 }}}
 
-and finally we add logic
+and finally we add logic to our Portlet.
 
 {{{
                 var myField$ = mThis.$("input[name=myField]");
