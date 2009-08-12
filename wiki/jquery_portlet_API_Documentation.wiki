@@ -8,7 +8,7 @@ This descripes jQuery Portlet API
 
 || Method || Description || Example ||
 || registerPortlet|| registers portlet to page|| On JSP page {{{ 
-<script type="text/javascript"> \\jQuery.registerPortlet(new sample.SamplePortlet("<portlet:namespace />")); \\ </script> }}}||
+<script type="text/javascript"> jQuery.registerPortlet(new sample.SamplePortlet("<portlet:namespace />")); </script> }}}||
 
 
 
