@@ -48,7 +48,7 @@ Goal of javascript TestingPortlet object is to add following text inside of port
 })(jQuery, window);
 }}}
 
-h1. Liferay Specific
+== Liferay Specific ==
 
 {{{
 	<portlet>
