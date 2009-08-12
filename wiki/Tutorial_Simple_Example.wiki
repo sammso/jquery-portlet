@@ -2,7 +2,7 @@
 
 == Overview ==
 
-This example portlet shows how to javascirpt
+This example portlet shows how to create javascript application and consentrate all the logic on one javascript file. There can be multiple instances of portlet and even thought these portlets are using same 
 
 == Create JSP page for portlet ==
 {{{
@@ -23,6 +23,54 @@ This example portlet shows how to javascirpt
 == Create testing-portlet.js  ==
 
 Goal of javascript TestingPortlet object is to add following text inside of portlet "<h1>Inserting text at end of portlet</h1>".
+
+We are packaking our application inside clusre to protect it's private members.
+
+{{{
+(function($, w){
+
+})(jQuery, window);
+}}}
+
+Then we add global public namespace for our javascript API.
+
+{{{
+        if(!w.sample) {
+                w.sample = {};
+        }
+}}}
+
+Then we create our portlet inside the namespace
+{{{
+        w.sample.SamplePortlet = function(nameSpace, options) {
+                var mThis = $.Portlet.call(this, nameSpace); // Extend parent 
+
+                mThis.ready = function() {
+                    // this is called when $(document).ready is called.                    
+                };
+                return mThis;
+        };
+}}}
+
+and finally we add logic
+
+{{{
+                var myField$ = mThis.$("input[name=myField]");
+                var myList$ = mThis.$(".jpList");
+
+                mThis.$("button[name=myButton]").click(function(){
+                    var fieldText = myField$.val();
+                    if(fieldText==undefined || fieldText.length==0) {
+                        return;
+                    }
+                    // Remove HTML comments
+                    fieldText = fieldText.replace(/[<]/g,"&lt;").replace(/[>]/g,"&gt;").replace(/[<]/g,"&amp;");
+                    myList$.append("<li>" + fieldText + "</li>");
+                });
+}}}
+
+
+=== Whole javascript sample.js code on same block===
 
 {{{
 (function($, w){
@@ -53,6 +101,8 @@ Goal of javascript TestingPortlet object is to add following text inside of port
         };
 })(jQuery, window);
 }}}
+
+
 
 == Liferay Specific ==
 
