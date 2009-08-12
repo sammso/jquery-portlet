@@ -10,6 +10,6 @@ This descripes jQuery Portlet API
 == Member methods == 
 
 || Method || Description || Example ||
-|| query | make jQuery inside portlet || {{{ mThis.query("button"); }}} ||
+|| query || make jQuery inside portlet || {{{ mThis.query("button"); }}} ||
 || $ || make jQuery inside portlet. Shorter version of query method. || {{{ mThis.$("button"); }}} ||
 || nameSpace || returns portlet namespace of this object || {{{ mThis.nameSpace }}} ||
