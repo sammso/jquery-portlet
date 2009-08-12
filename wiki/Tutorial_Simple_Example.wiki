@@ -58,7 +58,7 @@ Goal of javascript SamplePorlet allows user to add data to list.
 
 === Explanation ===
 
-We are packaking our application inside clusre to protect it's private members.
+We are packaking our application inside closure to code visibility.
 
 {{{
 (function($, w){
