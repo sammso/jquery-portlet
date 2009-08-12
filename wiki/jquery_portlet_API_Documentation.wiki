@@ -4,6 +4,16 @@
 
 This descripes jQuery Portlet API
 
+= new methods for jQuery =
+
+|| Method || Description || Example ||
+|| registerPortlet|| registers portlet to page|| On JSP page {{{ 
+<script type="text/javascript">
+        jQuery.registerPortlet(new sample.SamplePortlet("<portlet:namespace />"));
+</script>
+}}}||
+
+
 
 = $.Portlet object =
 
