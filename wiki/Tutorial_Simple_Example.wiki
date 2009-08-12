@@ -4,7 +4,7 @@
 
 This example portlet shows how to create JavaScript application and concentrate all the logic on one JavaScript file. There can be multiple instances of portlet and even thought these portlets.
 
-== Create JSP page for portlet ==
+== Create JSP page for portlet sample.jsp ==
 {{{
 <%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
 <portlet:defineObjects/>
@@ -22,9 +22,9 @@ This example portlet shows how to create JavaScript application and concentrate 
 
 == Create testing-portlet.js  ==
 
-Goal of javascript TestingPortlet object is to add following text inside of portlet "<h1>Inserting text at end of portlet</h1>".
+Goal of javascript SamplePorlet allows user to add data to list.
 
-sample.js file:
+=== sample.js ===
 
 {{{
 (function($, w){
@@ -104,6 +104,8 @@ and finally we add logic to our Portlet.
 }}}
 
 == Liferay Specific ==
+
+On liferay you can connect javascript file directly to portlet with liferay-portlet.xml
 
 {{{
 	<portlet>
