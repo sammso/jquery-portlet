@@ -1,15 +1,21 @@
 (function($){
+        var pageReadyCalled = false;
 	if ($.Portlet == undefined) {
 		$.Portlet = function(mNameSpace) {
 			var mThis = this;
-			var m$ = jQuery(mNameSpace);
+			var m$ = jQuery("#" + mNameSpace);
 	
 			/**
-			 * makes query inside portlet
+			 * Makes query inside portlet
 			 */		
-			mThis.query = function(a$) {
-				return $(a$,m$)
+			mThis.query = function(jQueryString) {
+                            if(jQueryString==undefined) {
+                                return m$;
+                            }
+                            return $(jQueryString,m$)
 			};
+
+                        mThis.$ = mThis.query;
 			
 			/**
 			 * returns portlet nameSpace
@@ -23,11 +29,10 @@
 		// Page portlet's are registed to here
 		var mPagePorlets = {};
 		
-		
 		/**
-		 * add new portlet to page
+		 * register new portlet to page
 		 */		
-		$.addPortlet = function(aPortlet){
+		$.registerPortlet = function(aPortlet){
 			if(aPortlet.nameSpace==undefined ) {
 				// Not a portlet
 			};
@@ -35,6 +40,10 @@
 				// Already found portlet with same namespace
 			}
 			mPagePorlets[aPortlet.nameSpace()] = aPortlet;
+                        // Call portlet ready if page ready is already called
+                        if(pageReadyCalled && aPortlet.ready!=undefined) {
+                                aPortlet.ready();
+                        }
 		};
 		
 		/**
@@ -83,6 +92,7 @@
 					lPortlet.ready();
 				}
 			};
+                        pageReadyCalled=true;
 		});
 	};
 	
