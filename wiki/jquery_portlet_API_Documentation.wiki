@@ -54,4 +54,4 @@ These methods are to be mainly to be used inside Portlet object.
 These methods are to be mainly to be used inside Portlet object.
 
 || *Method* || *Description* || *Example* ||
-|| ready || called when jQuery(document).ready(..) is called. Or if is already called then right after Portlet object creation. || {{{mThis.ready = function() {alert("ready called"}; ||
+|| ready || called when jQuery(document).ready(..) is called. Or if is already called then right after Portlet object creation. || {{{mThis.ready = function() {alert("ready called"};}}} ||
