@@ -16,7 +16,7 @@ http://jquery-portlet.googlecode.com/files/portalpage.PNG
 On jQuery portlet application logic is encapsulated inside Portlet object, which is extented from {{{$.Portlet}}} (or {{{jQuery.Portlet}}}) object.
 
 {{{
-var MyPortlet = function(nameSpace, options) {
+var PressButtonPortlet = function(nameSpace) {
                 var mThis = $.Portlet.call(this, nameSpace); // This extends your portlet object
                 mThis.ready = function() {
                     // this is called when $(document).ready is called.                    
@@ -24,5 +24,24 @@ var MyPortlet = function(nameSpace, options) {
                 return mThis;
         };
 }}}
+
+The portlet object is created to page
+
+When doing jQueries inside object, use mThis.$(..) syntax instead of $ syntax.
+
+To connect javascript portlet object to work with portlet, it has to be added to page jsp page.
+
+{{{
+<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+<portlet:defineObjects/>
+<div id="<portlet:namespace />">
+    <button name="press">Press</button>
+</div>
+<script type="text/javascript">
+        jQuery.registerPortlet(new PressButtonPortlet("<portlet:namespace />"));
+</script>
+}}}
+
+The portlet render area is inside {{{<div id="<portlet:namespace />">..</div>}}}. And the script where Portlet object is created and regitered is right after that.
 
 == Inter-portlet communication == 
