@@ -68,6 +68,8 @@ var ExtendedPressButtonPortlet = function(nameSpace, options) {
 };  
 }}}
 
+Below how the parameters could be passed to portlet object.
+
 {{{
 <%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
 <portlet:defineObjects/>
