@@ -1,6 +1,4 @@
 #labels Featured
-#Explains the basic idea behind the jQuery portlet library
-
 = The basic idea =
 
 == Traditional web applicatation ==
