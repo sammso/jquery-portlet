@@ -13,7 +13,7 @@ On other hand on portal page application is only responsible for content on port
 
 http://jquery-portlet.googlecode.com/files/portalpage.PNG
 
-On jQuery portlet application logic is encapsulated inside Portlet object, which is extented from {{$.Portlet}} (or {{jQuery.Portlet}}) object.
+On jQuery portlet application logic is encapsulated inside Portlet object, which is extented from {{{$.Portlet}}} (or {{{jQuery.Portlet}}}) object.
 
 {{{
 var MyPortlet = function(nameSpace, options) {
