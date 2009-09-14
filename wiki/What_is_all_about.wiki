@@ -1,0 +1,20 @@
+#labels Featured
+#Explains the basic idea behind the jQuery portlet library
+
+= The basic idea =
+
+== Traditional web applicatation ==
+
+On traditional web application, where the application is responsible of whole page. jQuery is used to search from whole page. See below:
+
+http://jquery-portlet.googlecode.com/files/traditionalpage.PNG
+
+When wanted to find some on the page.
+
+== Portal page ==
+
+On other hand on portal page applicatoin is only responsible for content on portlet window render area, which doesn't include either headers. So the jQuery search should return anything else than data inside portlet.
+
+http://jquery-portlet.googlecode.com/files/portalpage.PNG
+
+== Inter-portlet communication == 
