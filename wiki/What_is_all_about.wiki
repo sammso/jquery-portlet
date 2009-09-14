@@ -15,7 +15,9 @@ http://jquery-portlet.googlecode.com/files/portalpage.PNG
 
 On jQuery portlet application logic is encapsulated inside Portlet object, which is extented from {{{$.Portlet}}} (or {{{jQuery.Portlet}}}) object.
 
-=== Creating Javascript $.Portlet object ===
+= Simple =
+
+== Creating Javascript $.Portlet object ==
 
 {{{
 var PressButtonPortlet = function(nameSpace) {
@@ -46,7 +48,9 @@ To connect javascript portlet object to work with portlet, it has to be added to
 
 The portlet render area is inside {{{<div id="<portlet:namespace />">..</div>}}}. And the script where Portlet object is created and registered is right after that.
 
-=== Extending functionality ===
+= Advanced =
+
+== Extending functionality ==
 
 You can also extend your own portal object and have portlet inheritance hierachy. Portlet can also get start up parameters from jsp page and those can be read or extended with [http://docs.jquery.com/Utilities/jQuery.extend jQuery.extend] method.
 
