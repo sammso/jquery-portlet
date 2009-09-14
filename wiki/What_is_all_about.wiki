@@ -48,7 +48,6 @@ The portlet render area is inside {{{<div id="<portlet:namespace />">..</div>}}}
 
 === Extending functionality ===
 
-
 You can also extend your own portal object and have portlet inheritance hierachy. Portlet can also get start up parameters from jsp page and those can be read or extended with [http://docs.jquery.com/Utilities/jQuery.extend jQuery.extend] method.
 
 {{{
@@ -67,6 +66,19 @@ var ExtendedPressButtonPortlet = function(nameSpace, options) {
 	};
 	return mThis;
 };  
+}}}
+
+{{{
+<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+<portlet:defineObjects/>
+<div id="<portlet:namespace />">
+
+</div>
+<script type="text/javascript">
+	jQuery.registerPortlet(new CompanyPortlet ("<portlet:namespace />", {
+		companyId: <%=companyId %>
+	}));
+</script>
 }}}
 
 == Inter-portlet communication == 
