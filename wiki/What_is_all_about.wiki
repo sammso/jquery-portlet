@@ -9,14 +9,21 @@ http://jquery-portlet.googlecode.com/files/traditionalpage.PNG
 
 == Portal page ==
 
-On other hand on portal page application is only responsible for content on portlet window render area, which doesn't include either headers. So the jQuery search should return anything else than data inside portlet.
+On other hand on portal page application is only responsible for content on portlet window render area, which doesn't include either portlet headers. In portlet world jQuery search should not return anything else than query result from inside portlet.
 
 http://jquery-portlet.googlecode.com/files/portalpage.PNG
 
 On jQuery portlet application logic is encapsulated inside Portlet object, which is extented from portlet object.
 
 {{{
+var MyPortlet = function(nameSpace, options) {
+                var mThis = $.Portlet.call(this, nameSpace); // This extends your portlet object
 
+                mThis.ready = function() {
+                    // this is called when $(document).ready is called.                    
+                };
+                return mThis;
+        };
 }}}
 
 == Inter-portlet communication == 
