@@ -42,6 +42,6 @@ To connect javascript portlet object to work with portlet, it has to be added to
 </script>
 }}}
 
-The portlet render area is inside {{{<div id="<portlet:namespace />">..</div>}}}. And the script where Portlet object is created and regitered is right after that.
+The portlet render area is inside {{{<div id="<portlet:namespace />">..</div>}}}. And the script where Portlet object is created and registered is right after that.
 
 == Inter-portlet communication == 
