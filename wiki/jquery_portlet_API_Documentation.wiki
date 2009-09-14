@@ -9,8 +9,8 @@
 || registerPortlet|| registers portlet to page|| {{{jQuery.registerPortlet(new PressButtonPortlet("<portlet:namespace />"));}}}||
 || portletByNameSpace|| find's registered portlet object by namespace || {{{$.portletByNameSpace(..)}}} ||
 || searchPortlet|| search portlet ||{{{$.searchPortlet(function(aPortlet) { /* Identify your portlet here */ }) }}} ||
-|| portletCount|| How many portlets are registered to page || {{$.portletCount() }} ||
-|| portlets|| Returns all portlets on page on array || {{$.portlets() }} ||
+|| portletCount|| How many portlets are registered to page || {{{$.portletCount() }}} ||
+|| portlets|| Returns all portlets on page on array || {{{$.portlets() }}} ||
 
 = $.Portlet object =
 
