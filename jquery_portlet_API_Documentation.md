@@ -1,0 +1,59 @@
+#jQuery portlet API documentation.
+
+# Introduction #
+
+# new methods for jQuery #
+
+| **Method** | **Description** | **Example** |
+|:-----------|:----------------|:------------|
+| registerPortlet| registers portlet to page| `jQuery.registerPortlet(new PressButtonPortlet("<portlet:namespace />"));`|
+| portletByNameSpace| find's registered portlet object by namespace | `$.portletByNameSpace(..)` |
+| searchPortlet| search portlet |`$.searchPortlet(function(aPortlet) { /* Identify your portlet here */ }) ` |
+| portletCount| How many portlets are registered to page | `$.portletCount() ` |
+| portlets| Returns all portlets on page on array | `$.portlets() ` |
+
+# $.Portlet object #
+
+## Creating own Portlet object ##
+
+```
+var MyPortlet = function(nameSpace, options) {
+                var mThis = $.Portlet.call(this, nameSpace); // This extends your portlet object
+
+                mThis.ready = function() {
+                    // this is called when $(document).ready is called.                    
+                };
+                return mThis;
+        };
+```
+
+You can also extend your own portal object and have portlet inheritance hierachy.
+
+```
+var ExtendedPortlet = function(nameSpace, options) {
+                var mThis = MyPortlet.call(this, nameSpace, options); // This extends your portlet object
+
+                mThis.ready = function() {
+                    // this is called when $(document).ready is called.                    
+                };
+                return mThis;
+        };
+```
+
+## Member methods ##
+
+These methods are to be mainly to be used inside Portlet object.
+
+| **Method** | **Description** | **Example** |
+|:-----------|:----------------|:------------|
+| query | make jQuery inside portlet `<div id="<portlet:namespace />"></div>` | ` mThis.query("button"); ` |
+| $ | make jQuery inside portlet `<div id="<portlet:namespace />"></div>` Shorter version of query method. | ` mThis.$("button"); ` |
+| nameSpace | returns portlet namespace of this object | ` mThis.nameSpace() ` |
+
+## Member callbacks/events ##
+
+These methods are to be mainly to be used inside Portlet object.
+
+| **Method** | **Description** | **Example** |
+|:-----------|:----------------|:------------|
+| ready | called when jQuery(document).ready(..) is called. Or if is already called then right after Portlet object creation. | `mThis.ready = function() {alert("ready called"};` |

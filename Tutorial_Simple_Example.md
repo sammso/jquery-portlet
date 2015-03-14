@@ -1,0 +1,120 @@
+# Tutorial Simple Example #
+
+## Overview ##
+
+This example portlet shows how to create JavaScript application and concentrate all the logic on one JavaScript file. There can be multiple instances of portlet and even thought these portlets.
+
+## Create JSP page for portlet sample.jsp ##
+```
+<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+<portlet:defineObjects/>
+<div id="<portlet:namespace />">
+    <input type="text" name="myField">
+    <button name="myButton">Add To list</button>
+    <ul class="jpList">
+    </ul>
+</div>
+<script type="text/javascript">
+        jQuery.registerPortlet(new sample.SamplePortlet("<portlet:namespace />"));
+</script>
+```
+
+
+## Create testing-portlet.js ##
+
+Goal of javascript SamplePorlet allows user to add data to list.
+
+### sample.js ###
+
+```
+(function($, w){
+        // Create "sample" domain if not created
+        if(!w.sample) {
+                w.sample = {};
+        }
+
+        w.sample.SamplePortlet = function(nameSpace, options) {
+                var mThis = $.Portlet.call(this, nameSpace); // Extend parent functionality
+                var myField$ = mThis.$("input[name=myField]");
+                var myList$ = mThis.$(".jpList");
+
+                mThis.$("button[name=myButton]").click(function(){
+                    var fieldText = myField$.val();
+                    if(fieldText==undefined || fieldText.length==0) {
+                        return;
+                    }
+                    // Remove HTML comments
+                    fieldText = fieldText.replace(/[<]/g,"&lt;").replace(/[>]/g,"&gt;").replace(/[<]/g,"&amp;");
+                    myList$.append("<li>" + fieldText + "</li>");
+                });
+
+                mThis.ready = function() {
+                    // this is called when $(document).ready is called.                    
+                };
+                return mThis;
+        };
+})(jQuery, window);
+```
+
+### Explanation ###
+
+We are packaking our application inside closure to code visibility.
+
+```
+(function($, w){
+
+})(jQuery, window);
+```
+
+Then we add global public namespace for our javascript API.
+
+```
+        if(!w.sample) {
+                w.sample = {};
+        }
+```
+
+Then we create our javascript SamplePortlet inside the javascript domain
+```
+        w.sample.SamplePortlet = function(nameSpace, options) {
+                var mThis = $.Portlet.call(this, nameSpace); // Extend parent 
+
+                mThis.ready = function() {
+                    // this is called when $(document).ready is called.                    
+                };
+                return mThis;
+        };
+```
+
+and finally we add logic to our Portlet.
+
+```
+                var myField$ = mThis.$("input[name=myField]");
+                var myList$ = mThis.$(".jpList");
+
+                mThis.$("button[name=myButton]").click(function(){
+                    var fieldText = myField$.val();
+                    if(fieldText==undefined || fieldText.length==0) {
+                        return;
+                    }
+                    // Remove HTML comments
+                    fieldText = fieldText.replace(/[<]/g,"&lt;").replace(/[>]/g,"&gt;").replace(/[<]/g,"&amp;");
+                    myList$.append("<li>" + fieldText + "</li>");
+                });
+```
+
+## Liferay Specific ##
+
+On liferay you can connect javascript file directly to portlet with liferay-portlet.xml
+
+```
+	<portlet>
+		<portlet-name>jquery-portlet-sample</portlet-name>
+		<instanceable>true</instanceable>
+                <private-request-attributes>false</private-request-attributes>
+                <private-session-attributes>false</private-session-attributes>
+		<header-portlet-css>/css/sample.css</header-portlet-css>
+                <header-portlet-javascript>/js/jquery.portlet.js</header-portlet-javascript>
+		<header-portlet-javascript>/js/sample.js</header-portlet-javascript>
+	</portlet>
+```

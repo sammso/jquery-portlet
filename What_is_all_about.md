@@ -1,0 +1,89 @@
+# The basic idea #
+
+## Traditional web applicatation ##
+
+On traditional web application, where the application is responsible of whole page. jQuery is used to search from whole page. See below:
+
+http://jquery-portlet.googlecode.com/files/traditionalpage.PNG
+
+## Portal page ##
+
+On other hand on portal page application is only responsible for content on portlet window render area, which doesn't include either portlet headers. In portlet world jQuery search should not return anything else than query result from inside portlet.
+
+http://jquery-portlet.googlecode.com/files/portalpage.PNG
+
+On jQuery portlet application logic is encapsulated inside Portlet object, which is extented from `$.Portlet` (or `jQuery.Portlet`) object.
+
+# Simple #
+
+## Creating Javascript $.Portlet object ##
+
+```
+var PressButtonPortlet = function(nameSpace) {
+                var mThis = $.Portlet.call(this, nameSpace); // This extends your portlet object
+                mThis.ready = function() {
+                    // this is called when $(document).ready is called.                    
+                };
+                return mThis;
+        };
+```
+
+The portlet object is created to page
+
+When doing jQueries inside object, use mThis.$(..) syntax instead of $ syntax.
+
+To connect javascript portlet object to work with portlet, it has to be added to page jsp page.
+
+```
+<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+<portlet:defineObjects/>
+<div id="<portlet:namespace />">
+    <button name="press">Press</button>
+</div>
+<script type="text/javascript">
+        jQuery.registerPortlet(new PressButtonPortlet("<portlet:namespace />"));
+</script>
+```
+
+The portlet render area is inside `<div id="<portlet:namespace />">..</div>`. And the script where Portlet object is created and registered is right after that.
+
+# Advanced #
+
+## Extending functionality ##
+
+You can also extend your own portal object and have portlet inheritance hierachy. Portlet can also get start up parameters from jsp page and those can be read or extended with [jQuery.extend](http://docs.jquery.com/Utilities/jQuery.extend) method.
+
+```
+var CompanyPortlet = function(nameSpace, options) {
+	var mThis = PressButtonPortlet.call(this, nameSpace); // This extends your portlet object
+	
+	// Set default values to options
+	options = $.extend({
+		companyId: 10 // Default company id
+	}, options);	
+
+	
+
+	mThis.ready = function() {
+	    // this is called when $(document).ready is called.                    
+	};
+	return mThis;
+};  
+```
+
+Below how the parameters could be passed to portlet object.
+
+```
+<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet" %>
+<portlet:defineObjects/>
+<div id="<portlet:namespace />">
+
+</div>
+<script type="text/javascript">
+	jQuery.registerPortlet(new CompanyPortlet ("<portlet:namespace />", {
+		companyId: <%=companyId %>
+	}));
+</script>
+```
+
+## Inter-portlet communication ##
